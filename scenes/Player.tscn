@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cn1pww1dareao"]
+
+[ext_resource type="Texture2D" uid="uid://dpll42g64gpl4" path="res://assent/Tilemap/tilemap-characters_packed.png" id="1_c678f"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_ivc0v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bma02"]
+size = Vector2(16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2wxi"]
+atlas = ExtResource("1_c678f")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ly8c"]
+atlas = ExtResource("1_c678f")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v1uk"]
+atlas = ExtResource("1_c678f")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_712fv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2wxi")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ly8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5v1uk")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ivc0v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bma02")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_712fv")
+animation = &"Walk"
